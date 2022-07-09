@@ -1,4 +1,5 @@
 import os
+import sys
 import rdkit
 import torch
 import random
@@ -9,11 +10,13 @@ import logging as log
 from tqdm import tqdm
 from rdkit import Chem, RDLogger
 
-from .estimator.estimator import Estimator
-from .proposal.models.editor_basic import BasicEditor
-from .proposal.proposal import Proposal_Random, Proposal_Editor, Proposal_Mix
-from .sampler import Sampler_SA, Sampler_MH, Sampler_Recursive
-from .datasets.utils import load_mols
+ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from estimator.estimator import Estimator
+from proposal.models.editor_basic import BasicEditor
+from proposal.proposal import Proposal_Random, Proposal_Editor, Proposal_Mix
+from sampler import Sampler_SA, Sampler_MH, Sampler_Recursive
+from datasets.utils import load_mols
 
 lg = RDLogger.logger()
 lg.setLevel(RDLogger.CRITICAL)
@@ -25,7 +28,7 @@ if __name__ == '__main__':
     parser.add_argument('--debug',      action='store_true')
     parser.add_argument('--train',      action='store_true')
     parser.add_argument('--run_exist',  action='store_true')
-    parser.add_argument('--root_dir',   type=str,   default='MARS')
+    parser.add_argument('--root_dir',   type=str,   default='.')
     parser.add_argument('--data_dir',   type=str,   default='data')
     parser.add_argument('--run_dir',    type=str,   default='runs/debug')
     parser.add_argument('--editor_dir', type=str,   default=None)

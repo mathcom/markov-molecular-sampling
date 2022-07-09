@@ -1,8 +1,11 @@
 import os
+import sys
 import random
 from rdkit import Chem
 
-from .chem import standardize_smiles
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.chem import standardize_smiles
 
 class Recorder():
     def __init__(self, metrics):

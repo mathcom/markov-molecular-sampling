@@ -1,15 +1,19 @@
 import os
+import sys
 import pickle
 import numpy as np
 from rdkit import Chem, RDLogger
 
-from ...common.chem import fingerprints_from_mol
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.chem import fingerprints_from_mol
 
 lg = RDLogger.logger()
 lg.setLevel(RDLogger.CRITICAL)
 
 
-ROOT_DIR = 'MARS/estimator/scorer'
+#ROOT_DIR = 'MARS/estimator/scorer'
+ROOT_DIR = os.path.dirname(__file__)
 TASKS = ['gsk3b', 'jnk3']
 SPLITS = ['val', 'dev']
 

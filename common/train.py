@@ -1,8 +1,11 @@
 import os
+import sys
 import torch
 import logging as log
 
-from ..common.utils import Recorder
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.utils import Recorder
 
 
 def evaluate(model, loader, metrics=['loss']):

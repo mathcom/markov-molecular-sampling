@@ -1,13 +1,17 @@
+import os
+import sys
 import torch
 import torch.nn.functional as F
 from rdkit.Chem import AllChem
 from rdkit import Chem, DataStructs
 from torch.utils.data import DataLoader
 
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
 # from .scorer import chemprop_scorer
-from .scorer.scorer import get_scores
-from ..common.chem import mol_to_dgl
-from ..datasets.datasets import GraphDataset
+from estimator.scorer.scorer import get_scores
+from common.chem import mol_to_dgl
+from datasets.datasets import GraphDataset
 
 
 class Estimator():

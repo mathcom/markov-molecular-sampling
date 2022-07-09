@@ -1,4 +1,5 @@
 import os
+import sys
 import dgl
 import math
 import torch
@@ -10,10 +11,12 @@ from rdkit import Chem
 from abc import ABC, abstractmethod
 from torch.utils.data import DataLoader
 
-from ..datasets.utils import load_mols, load_vocab
-from ..datasets.datasets import GraphDataset, ImitationDataset
-from ..common.utils import sample_idx
-from ..common.chem import mol_to_dgl, check_validity, \
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from datasets.utils import load_mols, load_vocab
+from datasets.datasets import GraphDataset, ImitationDataset
+from common.utils import sample_idx
+from common.chem import mol_to_dgl, check_validity, \
                           Skeleton, break_bond, combine
 
 

@@ -1,4 +1,5 @@
 import os
+import sys
 import math
 import torch
 import random
@@ -9,11 +10,13 @@ from rdkit import Chem, DataStructs
 from torch.utils import data
 from torch.utils.tensorboard import SummaryWriter
 
-from .common.train import train
-from .common.chem import mol_to_dgl
-from .common.utils import print_mols
-from .datasets.utils import load_mols
-from .datasets.datasets import ImitationDataset, \
+ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.train import train
+from common.chem import mol_to_dgl
+from common.utils import print_mols
+from datasets.utils import load_mols
+from datasets.datasets import ImitationDataset, \
                                GraphClassificationDataset
 
 class Sampler():

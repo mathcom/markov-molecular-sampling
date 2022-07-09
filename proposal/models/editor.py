@@ -1,8 +1,12 @@
+import os
+import sys
 import torch
 import torch.nn as nn
 from abc import ABC, abstractmethod
 
-from MARS.common.nn import GraphEncoder, MLP
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.nn import GraphEncoder, MLP
 
 class Editor(ABC, nn.Module):
     def __init__(self, config):

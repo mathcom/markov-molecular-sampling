@@ -1,11 +1,15 @@
+import os
+import sys
 import dgl
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from dgl.nn.pytorch.glob import Set2Set
 
-from MARS.common.nn import GraphEncoder, MLP
-from .editor import Editor
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.nn import GraphEncoder, MLP
+from proposal.models.editor import Editor
 
 class BasicEditor(Editor):
     def __init__(self, config):

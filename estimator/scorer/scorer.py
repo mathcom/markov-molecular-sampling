@@ -1,5 +1,6 @@
 # modifed from: https://github.com/wengong-jin/hgraph2graph/blob/master/props/properties.py
-
+import os
+import sys
 import math
 import rdkit
 from rdkit import Chem, DataStructs
@@ -8,8 +9,10 @@ from rdkit.Chem import Descriptors
 import rdkit.Chem.QED as QED
 import networkx as nx
 
-from ...common.chem import standardize_smiles
-from . import sa_scorer, kinase_scorer #, drd2_scorer, chemprop_scorer
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from common.chem import standardize_smiles
+from estimator.scorer import sa_scorer, kinase_scorer #, drd2_scorer, chemprop_scorer
 
 ### get scores
 def get_scores(objective, mols):
