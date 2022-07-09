@@ -1,11 +1,14 @@
 import os
+import sys
 import pickle
 import argparse
 from tqdm import tqdm
 from rdkit import Chem, RDLogger
 
-from .utils import load_mols
-from ..common.chem import break_bond, Arm, Skeleton
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path = sys.path if ROOT_PATH in sys.path else [ROOT_PATH] + sys.path
+from datasets.utils import load_mols
+from common.chem import break_bond, Arm, Skeleton
 
 lg = RDLogger.logger()
 lg.setLevel(RDLogger.CRITICAL)
@@ -13,7 +16,7 @@ lg.setLevel(RDLogger.CRITICAL)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir',   type=str,   default='MARS/data')
+    parser.add_argument('--data_dir',   type=str,   default='data')
     parser.add_argument('--mols_file',  type=str,   default='chembl.txt')
     parser.add_argument('--vocab_name', type=str,   default='chembl',)
     parser.add_argument('--max_size',   type=int,   default=10, help='max size of arm')
