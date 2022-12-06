@@ -19,7 +19,7 @@ python datasets.prepro_vocab.py --data_dir data
 To sample molecules:
 
 ```bash
-python main.py --train --run_dir runs/RUN_DIR
+python main.py --train --run_dir runs/RUN_DIR --num_runs 5
 ```
 
 ## Evaluation and Generated Molecules
